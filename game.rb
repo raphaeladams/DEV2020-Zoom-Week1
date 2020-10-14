@@ -33,3 +33,8 @@ elsif guess == target
   puts "You guessed my number in #{ num_guesses } guesses!"
   guessed_it = true
 end
+
+# If player runs out of turns, tell them the number
+if not guessed_it
+  puts "Sorry, you didn't get my number... it was #{ target }."
+end
