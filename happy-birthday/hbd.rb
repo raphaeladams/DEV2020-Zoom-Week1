@@ -5,8 +5,6 @@ print "What is your name? "
 name = gets.chomp
 
 i = 1
-
-
 while i <= 4
 
   output = "Happy birthday "
