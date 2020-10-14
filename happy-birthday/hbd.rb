@@ -5,18 +5,20 @@ print "What is your name? "
 name = gets.chomp
 
 i = 1
-while i <= 4
+until i > 4
 
-  print "Happy birthday "
+  output = "Happy birthday "
 
-  if i != 3
-    print "to you"
-    print "." if i == 4
-    print "\n"
+  case i
+  when 3
+    output += "dear #{ name }"
+  when 4
+    output += "to you."
   else
-    print "dear #{ name }\n"
+    output += "to you"
   end
-  
+
+  puts output
   i += 1
 
 end
