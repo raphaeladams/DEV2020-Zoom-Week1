@@ -9,6 +9,7 @@ end
 
 num_guesses = 0
 guessed_it = false
+input = ""
 
 
 # User guesses 4-digit codes, and gets hints about whether
@@ -19,10 +20,11 @@ until guessed_it
 
   num_guesses += 1
   
-  begin
+  loop do
     print "[#{ num_guesses }] Enter your guess: "
     input = gets.chomp
-  end until input.match?(/\A[1-6]{4}\z/)
+    break if input.match?(/\A[1-6]{4}\z/)
+  end
   
   current_guess = input.split("")
 
@@ -35,7 +37,7 @@ until guessed_it
 
     code_temp = code.clone
 
-    for i in (0...current_guess.length)
+    (0...current_guess.length).each do |i|
 
       if current_guess[i] == code_temp[i]
         code_temp[i] = -1
@@ -45,7 +47,7 @@ until guessed_it
     
     end
 
-    for i in (0...current_guess.length)
+    (0...current_guess.length).each do |i|
     
       current_digit = current_guess[i]
       
