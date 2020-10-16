@@ -12,32 +12,30 @@ begin
 
 end until given_num.is_a? Integer
 
-digits_array = input.split("")
+given_array = input.split("")
 
-if digits_array.first == "-"
+if given_array.first == "-"
     
-  # Pop off the negative sign so we can deal with the other digits
-  digits_array.shift
-  digits_array.sort!
+  # Pop off the negative sign so we can deal with just the digits
+  digits = given_array.drop(1).sort
+
+  size_with_zeros = digits.size
 
   # We can't start a number with 0 unless the number itself equals 0.
   # Shift any leading zeros to start at position 1 in the array.
-  num_of_zeros = 0
     
-  while digits_array.length > 1 && digits_array.first == "0"
-    digits_array.shift
-    num_of_zeros += 1
-  end
+  digits.delete_if { |x| digits.size > 1 && x == "0" }
+  
+  size_without_zeros = digits.size
+  num_of_zeros = size_with_zeros - size_without_zeros
 
-  for i in 0...num_of_zeros do
-    digits_array.insert(1, 0)
-  end
+  num_of_zeros.times { digits.insert(1, 0) }
 
   # Finally, re-add the negative sign
-  largest_num = digits_array.unshift("-").join
+  largest_num = digits.unshift("-").join
 
 else
-  largest_num = digits_array.sort.reverse.join
+  largest_num = given_array.sort.reverse.join
 
 end
 
